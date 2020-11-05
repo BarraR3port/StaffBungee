@@ -1,0 +1,4 @@
+name: StaffBungee
+version: ${project.version}
+main: cl.bebt.staffbungee.main
+description: StaffCore Complement
