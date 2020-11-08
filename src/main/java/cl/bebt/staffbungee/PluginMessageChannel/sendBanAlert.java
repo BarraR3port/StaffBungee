@@ -1,4 +1,4 @@
-package cl.bebt.staffbungee.utils;
+package cl.bebt.staffbungee.PluginMessageChannel;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
@@ -9,20 +9,21 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.Collection;
 import java.util.Map;
 
-public class sendBanChangeAlert {
-    public sendBanChangeAlert(int id,String changer, String sender, String target, String reason, String ExpDate, String date, String status, String server){
+public class sendBanAlert {
+    public sendBanAlert(String sender, String target, String reason, Boolean permanent, Boolean Ip, Long amount, String time, String ExpDate, String date, String server){
         Collection<ProxiedPlayer> networkPlayers = ProxyServer.getInstance().getPlayers();
         if (networkPlayers == null || networkPlayers.isEmpty()){return;}
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("BanChange");
-        out.writeInt(id);
-        out.writeUTF(changer);
+        out.writeUTF("Ban");
         out.writeUTF(sender);
         out.writeUTF(target);
         out.writeUTF(reason);
+        out.writeBoolean(permanent);
+        out.writeBoolean(Ip);
+        out.writeLong(amount);
+        out.writeUTF(time);
         out.writeUTF(ExpDate);
         out.writeUTF(date);
-        out.writeUTF(status);
         out.writeUTF(server);
         for (Map.Entry<String, ServerInfo> servers : ProxyServer.getInstance().getServersCopy().entrySet()){
             try{

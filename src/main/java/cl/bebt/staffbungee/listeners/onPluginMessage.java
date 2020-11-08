@@ -1,6 +1,6 @@
 package cl.bebt.staffbungee.listeners;
 
-import cl.bebt.staffbungee.utils.*;
+import cl.bebt.staffbungee.PluginMessageChannel.*;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 import net.md_5.bungee.api.event.PluginMessageEvent;
@@ -8,6 +8,9 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 public class onPluginMessage implements Listener {
+
+    private int servers = 1;
+
     @EventHandler
     public void onPluginMessage(final PluginMessageEvent e) {
         if (e.isCancelled()) { return; }
@@ -75,6 +78,26 @@ public class onPluginMessage implements Listener {
                 new sendStaffChatMSGAlert(sender,message,server);
             }
 
+        } else if (e.getTag().equalsIgnoreCase("sc:stafflist")) {
+            ByteArrayDataInput in = ByteStreams.newDataInput( e.getData() );
+            String subChannel = in.readUTF();
+            if ( subChannel.equalsIgnoreCase( "SendSLRequest" )){
+                String sender = in.readUTF();
+                String server = in.readUTF();
+                servers++;
+                new sendSLRequest(sender,server);
+            }
+            if ( subChannel.equalsIgnoreCase( "SendData" )){
+                String sender = in.readUTF();
+                String server = in.readUTF();
+                String staffMembers = in.readUTF();
+                String staffMembersServer = in.readUTF();
+                String staffMembersPing = in.readUTF();
+                String staffMembersGamemode = in.readUTF();
+                new sendSLMenuInfo(sender,server,servers,staffMembers,staffMembersServer,staffMembersPing,staffMembersGamemode);
+                servers = 1;
+                //new sendSLRequest(sender,server);
+            }
         }
     }
 

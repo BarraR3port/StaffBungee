@@ -1,4 +1,4 @@
-package cl.bebt.staffbungee.utils;
+package cl.bebt.staffbungee.PluginMessageChannel;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
