@@ -9,21 +9,24 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.Collection;
 import java.util.Map;
 
-public class sendWipeAlert {
-    public sendWipeAlert(String sender, String target, int bans, int reports, int warns, String server){
+public class sendWarnChangeAlert{
+    public sendWarnChangeAlert( int id, String changer, String sender, String target, String reason, String ExpDate, String date, String status, String server){
         Collection<ProxiedPlayer> networkPlayers = ProxyServer.getInstance().getPlayers();
         if (networkPlayers == null || networkPlayers.isEmpty()){return;}
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
-        out.writeUTF("Wipe");
+        out.writeUTF("WarnChange");
+        out.writeInt(id);
+        out.writeUTF(changer);
         out.writeUTF(sender);
         out.writeUTF(target);
-        out.writeInt(bans);
-        out.writeInt(reports);
-        out.writeInt(warns);
+        out.writeUTF(reason);
+        out.writeUTF(ExpDate);
+        out.writeUTF(date);
+        out.writeUTF(status);
         out.writeUTF(server);
-        for (Map.Entry<String, ServerInfo> testPlayer : ProxyServer.getInstance().getServersCopy().entrySet()){
+        for (Map.Entry<String, ServerInfo> servers : ProxyServer.getInstance().getServersCopy().entrySet()){
             try{
-            ProxyServer.getInstance().getServerInfo(testPlayer.getKey()).sendData("sc:alerts", out.toByteArray());
+            ProxyServer.getInstance().getServerInfo(servers.getKey()).sendData("sc:alerts", out.toByteArray());
             } catch (NullPointerException ignored){}
         }
     }

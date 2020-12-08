@@ -47,6 +47,16 @@ public class onPluginMessage implements Listener {
                 String date = in.readUTF();
                 String server = in.readUTF();
                 new sendBanAlert(sender,target,reason,permanent,Ip,amount,time,ExpDate,date,server);
+            } else if ( subChannel.equalsIgnoreCase( "Warn" )){
+                String sender = in.readUTF();
+                String target = in.readUTF();
+                String reason = in.readUTF();
+                Long amount = in.readLong();
+                String time = in.readUTF();
+                String ExpDate = in.readUTF();
+                String date = in.readUTF();
+                String server = in.readUTF();
+                new sendWarnAlert(sender,target,reason,amount,time,ExpDate,date,server);
             } else if ( subChannel.equalsIgnoreCase( "BanChange" )){
                 int Id = in.readInt();
                 String changer = in.readUTF();
@@ -58,6 +68,17 @@ public class onPluginMessage implements Listener {
                 String status = in.readUTF();
                 String server = in.readUTF();
                 new sendBanChangeAlert(Id,changer,sender,target,reason,ExpDate,date,status,server);
+            } else if ( subChannel.equalsIgnoreCase( "WarnChange" )){
+                int Id = in.readInt();
+                String changer = in.readUTF();
+                String sender = in.readUTF();
+                String target = in.readUTF();
+                String reason = in.readUTF();
+                String ExpDate = in.readUTF();
+                String date = in.readUTF();
+                String status = in.readUTF();
+                String server = in.readUTF();
+                new sendWarnChangeAlert(Id,changer,sender,target,reason,ExpDate,date,status,server);
             } else if ( subChannel.equalsIgnoreCase( "Freeze" )){
                 String sender = in.readUTF();
                 String target = in.readUTF();
@@ -69,8 +90,9 @@ public class onPluginMessage implements Listener {
                 String target = in.readUTF();
                 int bans = in.readInt();
                 int reports = in.readInt();
+                int warns = in.readInt();
                 String server = in.readUTF();
-                new sendWipeAlert(sender,target,bans,reports,server);
+                new sendWipeAlert(sender,target,bans,reports,warns,server);
             } else if ( subChannel.equalsIgnoreCase( "StaffChat" )){
                 String sender = in.readUTF();
                 String message = in.readUTF();
