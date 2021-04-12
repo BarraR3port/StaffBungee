@@ -98,8 +98,12 @@ public class onPluginMessage implements Listener {
                 String message = in.readUTF();
                 String server = in.readUTF();
                 new sendStaffChatMSGAlert(sender,message,server);
+            } else if ( subChannel.equalsIgnoreCase( "HelpOp" )){
+                String sender = in.readUTF();
+                String message = in.readUTF();
+                String server = in.readUTF();
+                new sendHelpopAlert(sender,message,server);
             }
-
         } else if (e.getTag().equalsIgnoreCase("sc:stafflist")) {
             ByteArrayDataInput in = ByteStreams.newDataInput( e.getData() );
             String subChannel = in.readUTF();
