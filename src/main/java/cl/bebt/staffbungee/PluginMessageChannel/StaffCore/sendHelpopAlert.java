@@ -20,7 +20,7 @@ public class sendHelpopAlert {
         out.writeUTF( sender );
         out.writeUTF( reason );
         out.writeUTF( server );
-        for ( Map.Entry < String, ServerInfo > servers : ProxyServer.getInstance( ).getServersCopy( ).entrySet( ) ) {
+        for ( Map.Entry < String, ServerInfo > servers : ProxyServer.getInstance( ).getServers( ).entrySet( ) ) {
             try {
                 ProxyServer.getInstance( ).getServerInfo( servers.getKey( ) ).sendData( "sc:alerts" , out.toByteArray( ) );
             } catch ( NullPointerException ignored ) {

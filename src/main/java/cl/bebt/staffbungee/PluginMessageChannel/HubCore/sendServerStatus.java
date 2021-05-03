@@ -23,7 +23,7 @@ public class sendServerStatus {
             out.writeUTF( serverTarget );
             out.writeBoolean( error.getCause( ) == null );
             out.writeUTF( server );
-            for ( Map.Entry < String, ServerInfo > testPlayer : ProxyServer.getInstance( ).getServersCopy( ).entrySet( ) ) {
+            for ( Map.Entry < String, ServerInfo > testPlayer : ProxyServer.getInstance( ).getServers( ).entrySet( ) ) {
                 try {
                     ProxyServer.getInstance( ).getServerInfo( testPlayer.getKey( ) ).sendData( "hc:msg" , out.toByteArray( ) );
                 } catch ( NullPointerException ignored ) {

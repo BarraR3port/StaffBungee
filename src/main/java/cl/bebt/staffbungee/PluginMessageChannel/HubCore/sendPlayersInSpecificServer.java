@@ -21,7 +21,7 @@ public class sendPlayersInSpecificServer {
         out.writeInt( amount );
         out.writeUTF( serverTarget );
         out.writeUTF( server );
-        for ( Map.Entry < String, ServerInfo > testPlayer : ProxyServer.getInstance( ).getServersCopy( ).entrySet( ) ) {
+        for ( Map.Entry < String, ServerInfo > testPlayer : ProxyServer.getInstance( ).getServers( ).entrySet( ) ) {
             try {
                 ProxyServer.getInstance( ).getServerInfo( testPlayer.getKey( ) ).sendData( "hc:msg" , out.toByteArray( ) );
             } catch ( NullPointerException ignored ) {

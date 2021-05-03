@@ -21,7 +21,7 @@ public class sendFreezeAlert {
         out.writeUTF( target );
         out.writeBoolean( bool );
         out.writeUTF( server );
-        for ( Map.Entry < String, ServerInfo > testPlayer : ProxyServer.getInstance( ).getServersCopy( ).entrySet( ) ) {
+        for ( Map.Entry < String, ServerInfo > testPlayer : ProxyServer.getInstance( ).getServers( ).entrySet( ) ) {
             try {
                 ProxyServer.getInstance( ).getServerInfo( testPlayer.getKey( ) ).sendData( "sc:alerts" , out.toByteArray( ) );
             } catch ( NullPointerException ignored ) {

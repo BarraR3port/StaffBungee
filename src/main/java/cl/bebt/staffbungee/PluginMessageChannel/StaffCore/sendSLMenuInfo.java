@@ -25,7 +25,7 @@ public class sendSLMenuInfo {
         out.writeUTF( staffMembersPing );
         out.writeUTF( staffMembersGamemode );
         
-        for ( Map.Entry < String, ServerInfo > testPlayer : ProxyServer.getInstance( ).getServersCopy( ).entrySet( ) ) {
+        for ( Map.Entry < String, ServerInfo > testPlayer : ProxyServer.getInstance( ).getServers( ).entrySet( ) ) {
             try {
                 ProxyServer.getInstance( ).getServerInfo( testPlayer.getKey( ) ).sendData( "sc:stafflist" , out.toByteArray( ) );
             } catch ( NullPointerException ignored ) {
