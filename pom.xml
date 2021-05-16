@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cl.bebt.staffbungee</groupId>
-    <artifactId>StaffBungee</artifactId>
+    <artifactId>staffbungee</artifactId>
     <version>1.4</version>
     <packaging>jar</packaging>
 
@@ -16,6 +16,14 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub BarraR3port Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/BarraR3port/staffbungee</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <defaultGoal>clean package</defaultGoal>
